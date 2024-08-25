@@ -1,11 +1,12 @@
 local function set_speed(player)
-    local name = player:get_player_name()
     local controls = player:get_player_control()
+    local current_physics = player:get_physics_override()
+    local current_speed = current_physics.speed or 1.0
 
     if controls.aux1 then
-        player:set_physics_override({speed = 1.8})
-        elseif not controls.aux1 then
-            player:set_physics_override({speed = 1})
+        player:set_physics_override({speed = current_speed + 0.8})
+    else
+        player:set_physics_override({speed = current_speed})
     end
 end
 
